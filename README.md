@@ -89,8 +89,11 @@ The application is pre-configured with the following database settings in `src/m
 **Please ensure your local PostgreSQL matches these credentials or update the file:**
 
 quarkus.datasource.db-kind=postgresql
+
 quarkus.datasource.username=postgres
+
 quarkus.datasource.password=postgres
+
 quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/productiondb
 
 3. Backend (Quarkus)
