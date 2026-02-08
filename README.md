@@ -8,11 +8,19 @@ This project was developed as part of a **technical assessment**, focusing on cl
 
 ## Technologies
 
+### Backend
 - Java 17  
 - Quarkus  
 - Hibernate ORM (Panache)  
 - PostgreSQL  
 - Maven  
+
+### Frontend
+- React.js (Vite)
+- Redux Toolkit 
+- Material UI (MUI)
+- Axios 
+- React Router 
 
 ---
 
@@ -76,14 +84,25 @@ git clone https://github.com/your-username/your-repo.git
 
 2. Configure the database in application.properties
 
+The application is pre-configured with the following database settings in `src/main/resources/application.properties`.
+
+**Please ensure your local PostgreSQL matches these credentials or update the file:**
+
 quarkus.datasource.db-kind=postgresql
 quarkus.datasource.username=postgres
 quarkus.datasource.password=postgres
 quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/productiondb
 
-quarkus.hibernate-orm.database.generation=update
-
-3. Run the application
+3. Backend (Quarkus)
+Open a terminal in the  project root:
 
 ./mvnw quarkus:dev
 
+4. Frontend (React)
+Open a new terminal in the frontend folder:
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev

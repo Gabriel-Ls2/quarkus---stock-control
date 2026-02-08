@@ -18,7 +18,7 @@ public class ProductionResource {
 @Path("/suggestion")
 public Map<String, Object> getProductionSuggestion() {
 
-    //copiar o estoque atual (em memória)
+    // Copy the current stock (in-memory)
     Map<Long, Integer> stock = new HashMap<>();
     List<RawMaterial> materials = RawMaterial.listAll();
 
@@ -26,14 +26,14 @@ public Map<String, Object> getProductionSuggestion() {
         stock.put(rm.id, rm.stockQuantity);
     }
 
-    //buscar produtos por maior valor
+    // Get products sorted by price (descending)
     List<Product> products =
             Product.list("order by price desc");
 
     List<ProductionSuggestionDTO> suggestions = new ArrayList<>();
     BigDecimal totalProductionValue = BigDecimal.ZERO;
 
-    //processar produto por produto
+    // Process each product individually
     for (Product product : products) {
 
         List<ProductRawMaterial> relations =
@@ -43,7 +43,7 @@ public Map<String, Object> getProductionSuggestion() {
 
         int maxQuantity = Integer.MAX_VALUE;
 
-        //calcular quanto dá pra produzir
+        // Calculate production capacity
         for (ProductRawMaterial prm : relations) {
             int available = stock.getOrDefault(
                     prm.rawMaterial.id, 0
@@ -57,7 +57,7 @@ public Map<String, Object> getProductionSuggestion() {
 
         if (maxQuantity <= 0) continue;
 
-        //debitar estoque (simulado)
+        // Deduct stock (simulated)
         for (ProductRawMaterial prm : relations) {
             Long rmId = prm.rawMaterial.id;
             stock.put(
@@ -66,7 +66,7 @@ public Map<String, Object> getProductionSuggestion() {
             );
         }
 
-        //montar resposta
+        // Build response
         ProductionSuggestionDTO dto = new ProductionSuggestionDTO();
         dto.productId = product.id;
         dto.productName = product.name;
@@ -84,7 +84,7 @@ public Map<String, Object> getProductionSuggestion() {
 
     }
 
-    //retorno final
+    // Final return
     Map<String, Object> response = new HashMap<>();
     response.put("products", suggestions);
     response.put("totalValue", totalProductionValue);
