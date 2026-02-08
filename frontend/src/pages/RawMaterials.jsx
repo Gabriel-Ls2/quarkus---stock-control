@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMaterials, addMaterial, deleteMaterial } from '../store/materialsSlice';
-import { 
-  Container, Typography, TextField, Button, Grid, Paper, 
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
-  IconButton, Alert 
-} from '@mui/material';
+import { fetchMaterials, addMaterial, deleteMaterial, clearError } from '../store/materialsSlice';
+import { Container, Typography, TextField, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Alert } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'; 
 
 export default function RawMaterials() {
@@ -52,6 +48,12 @@ export default function RawMaterials() {
       <Typography variant="h4" gutterBottom sx={{ color: '#1976d2', fontWeight: 'bold' }}>
         Matérias-Primas 
       </Typography>
+
+      {error && (
+        <Alert severity="error" onClose={() => dispatch(clearError())} sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
 
       {/* Registration Form */}
       <Paper elevation={3} sx={{ p: 3, mb: 4, bgcolor: '#f8f9fa' }}>
