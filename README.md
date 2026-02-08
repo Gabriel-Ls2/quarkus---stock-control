@@ -104,6 +104,8 @@ Open a terminal in the  project root:
 4. Frontend (React)
 Open a new terminal in the frontend folder:
 
+cd frontend 
+
 **Install dependencies**
 
 npm install
