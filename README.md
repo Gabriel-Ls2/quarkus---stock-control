@@ -102,7 +102,9 @@ Open a terminal in the  project root:
 Open a new terminal in the frontend folder:
 
 **Install dependencies**
+
 npm install
 
 **Start the development server**
+
 npm run dev
